@@ -29,15 +29,17 @@ jobs:
         with:
           node-version: 22
 
-      - name: 3. Install Frontend Dependencies
-        run: npm install --legacy-peer-deps
+      - name: 3. Install Frontend & Capacitor Dependencies
+        run: |
+          npm install --legacy-peer-deps --include=dev
+          npm install @capacitor/core@^8.6.0 @capacitor/android@^8.6.0 @capacitor/cli@^8.6.0 --legacy-peer-deps
 
       - name: 4. Build Original React / Vite Frontend
         run: npm run build
 
       - name: 5. Sync Web Assets to Android via Capacitor
         run: |
-          npx --yes @capacitor/cli sync android || npx cap sync android
+          npx @capacitor/cli sync android
 
       - name: 6. Set up JDK 17
         uses: actions/setup-java@v4
