@@ -41,11 +41,11 @@ jobs:
         run: |
           npx @capacitor/cli sync android
 
-      - name: 6. Set up JDK 17
+      - name: 6. Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: 17
+          java-version: 21
           cache: 'gradle'
 
       - name: 7. Auto-Accept Preinstalled Android SDK Licenses
